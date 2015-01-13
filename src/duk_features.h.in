@@ -2094,6 +2094,17 @@ typedef FILE duk_file;
 
 #if defined(DUK_F_LINUX)
 #define DUK_USE_OS_STRING "linux"
+#elif defined(__APPLE__)
+/* http://stackoverflow.com/questions/5919996/how-to-detect-reliably-mac-os-x-ios-linux-windows-in-c-preprocessor */
+#if TARGET_IPHONE_SIMULATOR
+#define DUK_USE_OS_STRING "iPhone-sim"
+#elif TARGET_OS_IPHONE
+#define DUK_USE_OS_STRING "iPhone"
+#elif TARGET_OS_MAC
+#define DUK_USE_OS_STRING "iOS"
+#else
+#define DUK_USE_OS_STRING "iOS-unknown"
+#endif
 #elif defined(DUK_F_FREEBSD)
 #define DUK_USE_OS_STRING "freebsd"
 #elif defined(DUK_F_OPENBSD)
