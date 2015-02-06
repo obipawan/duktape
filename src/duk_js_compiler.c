@@ -6543,7 +6543,7 @@ DUK_LOCAL void duk__init_varmap_and_prologue_for_pass2(duk_compiler_ctx *comp_ct
 	if (out_stmt_value_reg) {
 		*out_stmt_value_reg = DUK__ALLOCTEMP(comp_ctx);
 	}
-	if (comp_ctx->curr_func.needs_shuffle) {
+	if (comp_ctx->curr_func.needs_shuffle || 1 /* FIXME: TEMPORARY HACK: FORCE SHUFFLE REGISTERS (GH-115) */) {
 		duk_reg_t shuffle_base = DUK__ALLOCTEMPS(comp_ctx, 3);
 		comp_ctx->curr_func.shuffle1 = shuffle_base;
 		comp_ctx->curr_func.shuffle2 = shuffle_base + 1;
